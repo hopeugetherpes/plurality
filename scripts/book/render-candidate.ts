@@ -1,4 +1,4 @@
-import { rmSync, existsSync } from 'node:fs'
+import { rmSync, existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync, SpawnSyncOptions } from 'node:child_process'
 import { prepareVivliostyle } from './prepare-vivliostyle'
@@ -25,6 +25,8 @@ export async function renderLocale(
   const prefix = `vivliostyle-${locale}-candidate`
   const pdfPath = join(outputRoot, 'candidate', `${prefix}.pdf`)
   const epubPath = join(outputRoot, 'candidate', `${prefix}.epub`)
+
+  mkdirSync(join(outputRoot, 'candidate'), { recursive: true })
 
   // 1. Remove old candidate outputs first to prevent stale output usage
   rmSync(pdfPath, { force: true })

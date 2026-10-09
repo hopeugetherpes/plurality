@@ -1,16 +1,31 @@
 {
   "name": "plurality-book",
   "private": true,
-  "packageManager": "bun@1.3.14",
+  "packageManager": "bun@1.4.2",
   "devDependencies": {
     "@types/adm-zip": "0.5.5",
     "@types/bun": "1.1.18",
     "@types/node": "20.17.12",
     "@vivliostyle/cli": "11.0.4",
-    "adm-zip": "0.5.12",
+    "adm-zip": "0.6.1",
     "pdf-lib": "1.17.1",
-    "vite-plus": "0.2.4",
+    "typescript": "5.9.3",
+    "vite-plus": "0.3.0",
     "vitepress": "1.6.4",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
+  },
+  "overrides": {
+    "dompurify": "3.4.16",
+    "handlebars": "4.7.10",
+    "prismjs": "1.30.0",
+    "tinypool": "2.1.2",
+    "trim": "0.0.3",
+    "valibot": "1.4.2",
+    "press-ready": {
+      "uuid": "11.1.1"
+    },
+    "vitepress": {
+      "vite": "6.4.3"
+    }
   }
 }
