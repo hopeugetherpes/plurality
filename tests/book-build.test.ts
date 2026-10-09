@@ -503,6 +503,23 @@ describe('Legacy validation', () => {
 })
 
 describe('Candidate orchestrator', () => {
+  test('creates the candidate output directory on a clean build', async () => {
+    const root = fixtureRoot('english')
+    mkdirSync(join(root, 'scripts'), { recursive: true })
+    writeFileSync(join(root, 'scripts', 'credits.json'), JSON.stringify(credits))
+    writeFileSync(join(root, 'contents', 'english', '0-0-endorsements.md'), '# Endorsements\n')
+    writeFileSync(join(root, 'contents', 'english', '1-1-test.md'), '# Title\n')
+    const outputDir = join(root, 'candidate')
+    expect(existsSync(outputDir)).toBe(false)
+
+    await renderLocale('en', '2024-01-02', root, () => {
+      expect(existsSync(outputDir)).toBe(true)
+      writeFileSync(join(outputDir, 'vivliostyle-en-candidate.pdf'), 'new pdf')
+      writeFileSync(join(outputDir, 'vivliostyle-en-candidate.epub'), 'new epub')
+      return { status: 0 }
+    })
+  })
+
   test('removes old candidate outputs before prepare/build', async () => {
     const root = fixtureRoot('english')
     mkdirSync(join(root, 'scripts'), { recursive: true })
